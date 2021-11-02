@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">App de Componente de navegacao</string>
-    <string name="next">Next</string>
+
+    <!--Start Fragment-->
+    <string name="start_action_bar_title">Start</string>
+    <string name="button_next">Next</string>
+
+    <!--Profile Fragment-->
+    <string name="profile_action_bar_title">Profile</string>
 </resources>
