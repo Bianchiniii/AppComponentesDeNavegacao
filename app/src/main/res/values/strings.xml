@@ -7,4 +7,5 @@
 
     <!--Profile Fragment-->
     <string name="profile_action_bar_title">Profile</string>
+    <string name="start_iniciar">Iniciar</string>
 </resources>
