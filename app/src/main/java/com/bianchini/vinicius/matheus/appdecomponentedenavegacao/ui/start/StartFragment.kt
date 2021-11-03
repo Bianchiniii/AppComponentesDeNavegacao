@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.bianchini.vinicius.matheus.appdecomponentedenavegacao.R
 import com.bianchini.vinicius.matheus.appdecomponentedenavegacao.databinding.FragmentStartBinding
+import com.bianchini.vinicius.matheus.appdecomponentedenavegacao.extensions.navigateWithAnimations
 
 class StartFragment : Fragment() {
     private lateinit var binding: FragmentStartBinding
@@ -24,10 +25,7 @@ class StartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonNext.setOnClickListener {
-            //utiliza sempre o id da ação e nao o id da tela, somente quando for chamar um layout fora do fluxo
-            //action criado no nav_graph_main
-            findNavController()
-                .navigate(R.id.action_startFragment2_to_profileFragment)
+            findNavController().navigateWithAnimations(R.id.action_startFragment2_to_profileFragment)
         }
     }
 }
