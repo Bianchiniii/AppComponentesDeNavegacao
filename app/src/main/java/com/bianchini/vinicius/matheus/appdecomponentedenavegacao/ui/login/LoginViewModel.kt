@@ -7,15 +7,21 @@ import com.bianchini.vinicius.matheus.appdecomponentedenavegacao.R
 class LoginViewModel : ViewModel() {
 
     sealed class AuthenticationState {
+        object Authenticated : AuthenticationState()
+        object Unauthenticated : AuthenticationState()
         class InvalidAuthenticationState(val fiends: List<Pair<String, Int>>) :
             AuthenticationState()
     }
 
-     val authenticationStageEvent = MutableLiveData<AuthenticationState>()
+    val authenticationStageEvent = MutableLiveData<AuthenticationState>()
+
+    init {
+        authenticationStageEvent.value = AuthenticationState.Unauthenticated
+    }
 
     fun authentication(username: String, password: String) {
         if (isValidForm(username, password)) {
-            //usuario authenticado
+            authenticationStageEvent.value = AuthenticationState.Authenticated
         }
     }
 

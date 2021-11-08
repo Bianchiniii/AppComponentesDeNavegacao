@@ -1,20 +1,20 @@
 package com.bianchini.vinicius.matheus.appdecomponentedenavegacao.ui.login
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
-import com.bianchini.vinicius.matheus.appdecomponentedenavegacao.R
+import androidx.fragment.app.activityViewModels
 import com.bianchini.vinicius.matheus.appdecomponentedenavegacao.databinding.LoginFragmentBinding
+import com.bianchini.vinicius.matheus.appdecomponentedenavegacao.extensions.dismisError
 import com.google.android.material.textfield.TextInputLayout
-import kotlinx.android.synthetic.main.login_fragment.*
 
 class LoginFragment : Fragment() {
     private lateinit var binding: LoginFragmentBinding
-    private lateinit var viewModel: LoginViewModel
+
+    //cria o viewmodel automatico e coloca no scopo da activity principal, podendo chamar o viewmodel
+    private val viewModel: LoginViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,9 +26,10 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         mutableLiveDataObserver()
         setBtnEntrar()
+        setInputLayoutLoginUsernameBehaviour()
+        setInputLayoutLoginPasswordBehaviour()
     }
 
     private fun setBtnEntrar() {
@@ -57,4 +58,12 @@ class LoginFragment : Fragment() {
         LoginViewModel.INPUT_USERNAME.first to binding.inputLayoutLoginUsername,
         LoginViewModel.INPUT_PASSWORD.first to binding.inputLayoutLoginPassword
     )
+
+    private fun setInputLayoutLoginUsernameBehaviour() {
+        binding.inputLayoutLoginUsername.addOnEditTextAttachedListener { it.dismisError() }
+    }
+
+    private fun setInputLayoutLoginPasswordBehaviour() {
+        binding.inputLayoutLoginPassword.addOnEditTextAttachedListener { it.dismisError() }
+    }
 }
