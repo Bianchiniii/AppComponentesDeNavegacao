@@ -31,18 +31,19 @@ class ProfileFragment : Fragment() {
 
     private fun serLoginViewModelBehaviour() {
         loginViewModel.authenticationStageEvent.observe(
-            viewLifecycleOwner,
-            { authenticationState ->
-                when (authenticationState) {
-                    is LoginViewModel.AuthenticationState.Authenticated -> {
+            viewLifecycleOwner
+        ) { authenticationState ->
+            when (authenticationState) {
+                is LoginViewModel.AuthenticationState.Authenticated -> {
 
-                    }
-
-                    is LoginViewModel.AuthenticationState.Unauthenticated -> {
-                        findNavController().navigate(R.id.loginFragment)
-                    }
                 }
-            })
+
+                is LoginViewModel.AuthenticationState.Unauthenticated -> {
+                    findNavController().navigate(R.id.loginFragment)
+                }
+                else -> {}
+            }
+        }
 
     }
 }
